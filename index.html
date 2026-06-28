@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruwindya Niunhellage — UI/UX Designer & Web Developer</title>
+  <link rel="icon" type="image/png" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    (function () {
+      const t = localStorage.getItem('theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+
+  <style>
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 16px;
+      object-fit: contain;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+      transform: scale(0.92);
+      transition: transform 0.3s ease;
+      display: block;
+    }
+
+    .lightbox.open .lightbox-img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #fff;
+      font-size: 1.3rem;
+      transition: background 0.2s;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <img src="" alt="Social Media Post" class="lightbox-img" id="lightboxImg">
+  </div>
+
+  <!-- CURSOR -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- MOBILE NAV -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="btn-talk" style="text-align:center;margin-top:1rem;">Let's Talk</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="#home" class="nav-logo">
+      <img src="images/logo black.svg" alt="Logo" class="logo-light-mode">
+      <img src="images/logo white.svg" alt="Logo" class="logo-dark-mode">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      </button>
+      <a href="#contact" class="btn-talk">Let's Talk</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <div class="grid-lines"></div>
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+    </div>
+
+    <!-- LADY IMAGE — top right floating -->
+
+
+    <!-- MAIN CONTENT — centered -->
+    <div class="hero-center">
+      <p class="hero-label reveal">Hey there, I'm
+        <img src="images/hero.svg" alt="wave" class="hero-wave-icon logo-light-mode">
+        <img src="images/hero_black.svg" alt="wave" class="hero-wave-icon logo-dark-mode">
+      </p>
+
+      <!-- NAME + FRAME -->
+      <div class="hero-name-frame reveal reveal-delay-1">
+        <!-- Corner frame coded in CSS -->
+        <h1 class="hero-name-big">Ruwindya</h1>
+      </div>
+      <div class="hero-role-line reveal reveal-delay-2">
+        <span id="typewriter"></span><span class="cursor-blink"></span>
+      </div>
+
+      <div class="hero-btns reveal reveal-delay-4">
+        <a href="#contact" class="btn-primary">
+          Hire Me
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+        <a href="#work" class="btn-outline">View My Work</a>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-visual reveal">
+      <div class="about-img-wrap" style="position: relative; overflow: hidden;">
+        <img src="images/about.svg" alt="About Ruwindya" style="display: block; width: 100%; height: 100%;">
+        <img src="images/about (2).gif" alt=""
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <!--<div class="about-accent-strip"></div>-->
+    </div>
+    <div class="about-content">
+      <p class="section-eyebrow reveal">Get to know me</p>
+      <h2 class="section-title reveal reveal-delay-1">I design experiences that attract, engage, and <em>grow
+          brands</em>.</h2>
+      <p class="about-text reveal reveal-delay-2">I'm Ruwindya, a Sri Lanka based UI/UX designer, web developer, and
+        tech YouTuber. I specialize in creating modern, high-performing digital experiences that combine clean design
+        with strong usability. With a focus on clarity, strategy, and user behavior, I help brands build products that
+        not only look professional but also deliver real results.</p>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item">Clean UI Design <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">High-Converting Websites <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">User Experience Optimization <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Fast Responsive Websites <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Modern Web Interfaces <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Conversion-Focused Design <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">UI/UX Strategy <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Frontend Development <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Design Systems <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Web Development <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Clean UI Design <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">High-Converting Websites <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">User Experience Optimization <span class="marquee-sep">◆</span></span>
+      <span class="marquee-item">Fast Responsive Websites <span class="marquee-sep">◆</span></span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <p class="section-eyebrow reveal">My Services</p>
+      <h2 class="section-title reveal reveal-delay-1">What I <em>Offer</em> You</h2>
+      <p class="section-sub reveal reveal-delay-2">I design and build modern, user-friendly digital experiences that
+        deliver real results.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Card 1: UI/UX Design -->
+      <div class="service-card reveal">
+        <span class="service-num">01</span>
+        <div class="service-icon">
+          <img src="icons/icon01.svg" alt="UI/UX Design">
+        </div>
+        <h3 class="service-title">UI/UX Design</h3>
+        <p class="service-desc">User-centred design that converts visitors into loyal users. From wireframes to
+          pixel-perfect Figma prototypes — I design experiences that feel effortless.</p>
+        <div class="service-tags">
+          <span class="service-tag">Figma</span>
+          <span class="service-tag">Photoshop</span>
+          <span class="service-tag">Miro</span>
+          <span class="service-tag">FigJam</span>
+          <span class="service-tag">Canva</span>
+        </div>
+        <a href="#work" class="btn-service" data-filter="uiux">View Work <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg></a>
+      </div>
+
+      <!-- Card 2: Social Media Design -->
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-num">02</span>
+        <div class="service-icon">
+          <img src="icons/icon02.svg" alt="Social Media Design">
+        </div>
+        <h3 class="service-title">Social Media Design</h3>
+        <p class="service-desc">Modern social media creatives designed to help brands stand out online. From promotional
+          posts to campaign visuals, I create clean and engaging content tailored for digital platforms.</p>
+        <div class="service-tags">
+          <span class="service-tag">Canva</span>
+          <span class="service-tag">Photoshop</span>
+          <span class="service-tag">Figma</span>
+          <span class="service-tag">Adobe Express</span>
+        </div>
+        <a href="#work" class="btn-service" data-filter="social">View Work <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg></a>
+      </div>
+
+      <!-- Card 3: Web Development -->
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-num">03</span>
+        <div class="service-icon">
+          <img src="icons/icon03.svg" alt="Web Development">
+        </div>
+        <h3 class="service-title">Web Development</h3>
+        <p class="service-desc">Clean, performant and responsive websites built with modern tech. I turn Figma designs
+          into fast-loading, accessible, production-ready code.</p>
+        <div class="service-tags">
+          <span class="service-tag">Next.js</span>
+          <span class="service-tag">React</span>
+          <span class="service-tag">WordPress</span>
+          <span class="service-tag">Wix</span>
+        </div>
+        <a href="#work" class="btn-service" data-filter="webdev">View Work <svg viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section class="works" id="work">
+    <div class="section-header">
+      <p class="section-eyebrow reveal">Portfolio</p>
+      <h2 class="section-title reveal reveal-delay-1">Featured <em>Projects</em></h2>
+      <p class="section-sub reveal reveal-delay-2">Selected works that showcase my craft across design and development.
+      </p>
+    </div>
+
+    <!-- Tabs: UI/UX | Social | Web Dev -->
+    <div class="filter-tabs reveal reveal-delay-2">
+      <button class="filter-tab active" data-filter="uiux">UI/UX</button>
+      <button class="filter-tab" data-filter="social">Social Media</button>
+      <button class="filter-tab" data-filter="webdev">Web Dev</button>
+    </div>
+
+    <div class="works-grid">
+
+      <!-- ── UI/UX cards ── -->
+      <div class="work-card reveal" data-category="uiux">
+        <img src="images/template.png" alt="Pharmacy Website" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Responsive Pharmacy Website Design</h4>
+          <p class="work-desc">A clean website design for a UK online pharmacy, making prescriptions and treatments
+            easier to access.</p>
+          <a href="pharmacywebsite.html" class="work-cta">View Project <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-1" data-category="uiux">
+        <img src="images/keells.png" alt="Keells" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Keells Super App: UX/UI Redesign</h4>
+          <p class="work-desc">A full UX/UI redesign of the Keells Super mobile app making grocery shopping simpler and
+            faster.</p>
+          <a href="keells.html" class="work-cta">View Project <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-2" data-category="uiux">
+        <img src="images/insta.png" alt="Instagram Spatial UI" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Instagram Spatial UI</h4>
+          <p class="work-desc">A concept reimagining Instagram as an immersive spatial experience for Apple Vision Pro.
+          </p>
+          <a href="spatial.html" class="work-cta">View Project <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-3" data-category="uiux">
+        <img src="images/paydens.png" alt="Paydens Redesign" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Paydens - Website Redesign</h4>
+          <p class="work-desc">A concept reimagining Instagram as an immersive spatial experience for Apple Vision Pro.
+          </p>
+          <a href="paydens.html" class="work-cta">View Project <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-4" data-category="uiux">
+        <img src="images/fashionapp.png" alt="Fashion App" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Fashion App Design</h4>
+          <p class="work-desc">A full mobile fashion app UI covering home, category browsing, filter overlays, and a
+            detailed product page.</p>
+          <a href="fashionapp.html" class="work-cta">View Project <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-4" data-category="uiux">
+        <img src="images/lumeskin.png" alt="Paydens Dashboard" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Skincare Website Landing Page</h4>
+          <p class="work-desc">A conversion-focused landing page for a premium skincare brand with confident visuals and
+            clear hierarchy.</p>
+          <a href="lumeskin.html" class="work-cta">View Project <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></a>
+        </div>
+      </div>
+
+      <!-- ── Social Media Design cards ── -->
+      <div class="work-card reveal" data-category="social" style="display:none;">
+        <img src="images/refer.png" alt="Social Post 1" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Referral Reward Campaign</h4>
+          <p class="work-desc">Designed a referral campaign post to encourage users to invite friends and earn rewards
+            through a simple and eye-catching offer.</p>
+          <button class="work-cta lightbox-trigger" data-img="images/refer.png">View Post <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></button>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-1" data-category="social" style="display:none;">
+        <img src="images/run.png" alt="Social Post 2" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Pharmacy Workflow Promotion</h4>
+          <p class="work-desc">Created a social media ad highlighting the daily challenges pharmacists face and how
+            technology can make their work easier.</p>
+          <button class="work-cta lightbox-trigger" data-img="images/run.png">View Post <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></button>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-2" data-category="social" style="display:none;">
+        <img src="images/stress.png" alt="Social Post 3" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Pharmacy Growth Campaign</h4>
+          <p class="work-desc">Designed a promotional post focused on showing how automation can save time and help
+            pharmacies increase revenue.</p>
+          <button class="work-cta lightbox-trigger" data-img="images/stress.png">View Post <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></button>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-3" data-category="social" style="display:none;">
+        <img src="images/aipost.png" alt="Social Post 4" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">AI Marketing Creative</h4>
+          <p class="work-desc">Created a bold promotional graphic to showcase the benefits of AI in eCommerce and
+            capture audience attention.</p>
+          <button class="work-cta lightbox-trigger" data-img="images/aipost.png">View Post <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></button>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-4" data-category="social" style="display:none;">
+        <img src="images/webinar.png" alt="Social Post 5" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Webinar Registration Post</h4>
+          <p class="work-desc">Designed a clean event promotion post to communicate key webinar details and encourage
+            registrations.</p>
+          <button class="work-cta lightbox-trigger" data-img="images/webinar.png">View Post <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></button>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-4" data-category="social" style="display:none;">
+        <img src="images/flora.png" alt="Social Post 6" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Floral Business Promotion</h4>
+          <p class="work-desc">Created a product showcase post for a flower business, highlighting custom bouquets for
+            special occasions.</p>
+          <button class="work-cta lightbox-trigger" data-img="images/flora.png">View Post <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></button>
+        </div>
+      </div>
+
+      <!-- ── Web Dev cards ── -->
+      <div class="work-card reveal" data-category="webdev" style="display:none;">
+        <img src="images/gamifix.png" alt="GamiFix" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">GamiFix - Gamified E-Learning Platform</h4>
+          <p class="work-desc">A gamified coding learning platform with interactive HTML, CSS & JS courses, XP points,
+            achievement badges, leaderboards, and an AI coding assistant.</p>
+          <a href="https://gamifix.netlify.app/" target="_blank" class="work-cta">View Live <svg viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="work-card reveal reveal-delay-2" data-category="webdev" style="display:none;">
+        <img src="images/portfolio.png" alt="Portfolio Template" class="work-img">
+        <div class="work-overlay">
+          <h4 class="work-name">Portfolio Template</h4>
+          <p class="work-desc">A clean responsive developer portfolio template built with HTML, CSS and JavaScript.
+            Features smooth animations, project showcase and a contact form.</p>
+          <a href="https://nruwindya.github.io/portfolio-template/" target="_blank" class="work-cta">View Live <svg
+              viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg></a>
+        </div>
+      </div>
+
+    </div>
+    
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="clients-section" id="clients">
+    <div class="section-header">
+      <p class="section-eyebrow reveal">Trusted By</p>
+      <h2 class="section-title reveal reveal-delay-1">Clients I've <em>Worked With</em></h2>
+      <p class="section-sub reveal reveal-delay-2">Brands and businesses I've had the pleasure of designing for.</p>
+    </div>
+    <div class="clients-logos-row reveal reveal-delay-2">
+      <div class="client-logo-card">
+        <img src="images/clients/healthya.svg" alt="Client 1">
+      </div>
+      <div class="client-logo-card">
+        <img src="images/clients/pfp.svg" alt="Client 2">
+      </div>
+      <div class="client-logo-card">
+        <img src="images/clients/seww.svg" alt="Client 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUTUBE TUTORIALS -->
+  <section class="youtube-section" id="youtubetuts">
+    <div class="section-header">
+      <p class="section-eyebrow reveal">Content Creation</p>
+      <h2 class="section-title reveal reveal-delay-1">Latest <em>Tutorials</em> from YouTube</h2>
+      <p class="section-sub reveal reveal-delay-2">Tutorials, design breakdowns & tech deep-dives — new videos every
+        week.</p>
+    </div>
+
+    <div class="youtube-grid">
+      <a class="yt-card reveal" href="https://www.youtube.com/watch?v=OASInJeNE3w" target="_blank" rel="noopener">
+        <div class="yt-thumb-wrap">
+          <img src="https://img.youtube.com/vi/OASInJeNE3w/hqdefault.jpg" alt="UI vs UX">
+          <div class="yt-overlay"></div>
+          <div class="yt-play-btn">
+            <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
+              <polygon points="6,3 20,12 6,21" />
+            </svg>
+          </div>
+          <div class="yt-duration">4:15</div>
+        </div>
+        <div class="yt-info">
+          <span class="yt-tag">UI/UX</span>
+          <h4 class="yt-title">UI vs UX Made Simple in 4 Minutes</h4>
+          <p class="yt-meta">16 views &nbsp;·&nbsp; 2 days ago</p>
+        </div>
+      </a>
+
+      <a class="yt-card reveal reveal-delay-1" href="https://www.youtube.com/watch?v=8Da_t4z2ptU" target="_blank"
+        rel="noopener">
+        <div class="yt-thumb-wrap">
+          <img src="https://img.youtube.com/vi/8Da_t4z2ptU/hqdefault.jpg" alt="Build Your DREAM Website">
+          <div class="yt-overlay"></div>
+          <div class="yt-play-btn">
+            <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
+              <polygon points="6,3 20,12 6,21" />
+            </svg>
+          </div>
+          <div class="yt-duration">1:09:33</div>
+        </div>
+        <div class="yt-info">
+          <span class="yt-tag">UI/UX</span>
+          <h4 class="yt-title">Build Your DREAM Website with Figma!</h4>
+          <p class="yt-meta">2.5K views &nbsp;·&nbsp; 1 year ago</p>
+        </div>
+      </a>
+
+      <a class="yt-card reveal reveal-delay-2" href="https://www.youtube.com/watch?v=sjHm5Ac2LUE" target="_blank"
+        rel="noopener">
+        <div class="yt-thumb-wrap">
+          <img src="https://img.youtube.com/vi/sjHm5Ac2LUE/hqdefault.jpg" alt="Glassmorphism Figma">
+          <div class="yt-overlay"></div>
+          <div class="yt-play-btn">
+            <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
+              <polygon points="6,3 20,12 6,21" />
+            </svg>
+          </div>
+          <div class="yt-duration">12:01</div>
+        </div>
+        <div class="yt-info">
+          <span class="yt-tag">Design Tips</span>
+          <h4 class="yt-title">Glassmorphism Sign-Up Form Using Figma | Step-by-Step Tutorial</h4>
+          <p class="yt-meta">535 views &nbsp;·&nbsp; 1 year ago</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="yt-cta-row reveal">
+      <a href="https://www.youtube.com/@ruwonweb" target="_blank" class="btn-outline yt-view-all">
+        View All Videos
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- FREELANCE CTA -->
+  <section class="freelance-cta">
+    <div class="freelance-cta-inner">
+      <div class="freelance-cta-left reveal">
+        <span class="open-badge"><span class="badge-dot"></span> Open to Work</span>
+        <h2 class="freelance-title">Let's build something<br><em>remarkable together.</em></h2>
+        <p class="freelance-sub">Whether you need a full product from scratch, a design refresh, or a landing page that
+          converts — I bring pixel-perfect craft and strategic thinking to every project.</p>
+        <a href="mailto:ruwonweb@gmail.com" class="btn-primary">
+          Email Me
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER + CONTACT -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div>
+        <a href="#home" class="footer-logo">
+          <img src="images/logo black.svg" alt="Logo" class="logo-light-mode">
+          <img src="images/logo white.svg" alt="Logo" class="logo-dark-mode">
+        </a>
+        <p class="footer-tagline">Helping brands grow through design.</p>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/in/nruwindya/" target="_blank" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/@ruwonweb" target="_blank" class="social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" />
+              <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/ruww.uix/" target="_blank" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+          <a href="https://dribbble.com/Ruwindya_" target="_blank" class="social-link" aria-label="Dribbble">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10" />
+              <path
+                d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32" />
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@ruwonweb_" target="_blank" rel="noopener" class="social-link"
+            aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Featured Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Get in Touch</h4>
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+          <input type="hidden" name="access_key" value="99683806-dc40-4cf8-a67b-b9ac26b659de">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Project inquiry...">
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="btn-text">Send Message</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+            <span class="spinner"></span>
+          </button>
+          <p class="success-msg" id="successMsg">✓ Message sent! I'll get back to you soon.</p>
+          <p class="error-msg" id="errorMsg"
+            style="display:none;color:#ef4444;font-size:0.82rem;font-weight:500;padding:8px 0;">Something went wrong.
+            Please try again or email me directly.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 <span>Ruwindya Niunhellage</span>. All rights reserved.</p>
+      <p class="footer-copy">Made in Sri Lanka 🇱🇰</p>
+    </div>
+  </footer>
+
+  <script>
+    // THEME PERSISTENCE
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    if (savedTheme === 'dark') {
+      document.getElementById('themeIcon').innerHTML = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+    }
+
+    // CURSOR
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx - 4}px,${my - 4}px)`; });
+    function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.transform = `translate(${rx - 18}px,${ry - 18}px)`; requestAnimationFrame(animRing); }
+    animRing();
+    document.querySelectorAll('a,button,.work-card,.service-card,.skill-pill,.filter-tab,.social-link,.yt-card').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+    });
+
+    // NAVBAR
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+
+    // THEME TOGGLE
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const sunPath = `<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>`;
+    const moonPath = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeIcon.innerHTML = isDark ? moonPath : sunPath;
+    });
+
+    // MOBILE MENU
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    function toggleMenu(open) {
+      mobileMenu.classList.toggle('open', open);
+      mobileOverlay.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', () => toggleMenu(!mobileMenu.classList.contains('open')));
+    mobileOverlay.addEventListener('click', () => toggleMenu(false));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+    // TYPEWRITER
+    const roles = ['UI/UX Designer', 'Web Developer', 'Tech YouTuber'];
+    let rIdx = 0, cIdx = 0, deleting = false;
+    const tw = document.getElementById('typewriter');
+    function typeLoop() {
+      const cur = roles[rIdx];
+      if (!deleting) {
+        tw.textContent = cur.slice(0, ++cIdx);
+        if (cIdx === cur.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
+      } else {
+        tw.textContent = cur.slice(0, --cIdx);
+        if (cIdx === 0) { deleting = false; rIdx = (rIdx + 1) % roles.length; setTimeout(typeLoop, 400); return; }
+      }
+      setTimeout(typeLoop, deleting ? 55 : 80);
+    }
+    setTimeout(typeLoop, 800);
+
+    // SCROLL REVEAL
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // SCROLL SPY
+    const sections = document.querySelectorAll('section[id], footer[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 120) cur = sec.id; });
+      navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+    });
+
+    // PROJECT FILTER
+    const tabs = document.querySelectorAll('.filter-tab');
+    const cards = document.querySelectorAll('.work-card');
+
+    function applyFilter(filter) {
+      cards.forEach(card => {
+        const match = card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+        card.style.opacity = '1';
+        card.style.transform = '';
+        card.style.pointerEvents = '';
+        card.style.transition = 'opacity 0.3s, transform 0.3s';
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        applyFilter(tab.dataset.filter);
+      });
+    });
+
+    applyFilter('uiux');
+
+    // SERVICE CARD → FILTER + SCROLL
+    document.querySelectorAll('.btn-service[data-filter]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const filter = btn.getAttribute('data-filter');
+        tabs.forEach(t => t.classList.remove('active'));
+        const targetTab = document.querySelector(`.filter-tab[data-filter="${filter}"]`);
+        if (targetTab) targetTab.classList.add('active');
+        applyFilter(filter);
+        document.querySelector('#work').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // LIGHTBOX
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.addEventListener('click', e => {
+      const trigger = e.target.closest('.lightbox-trigger');
+      if (trigger) {
+        lightboxImg.src = trigger.getAttribute('data-img');
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // CONTACT FORM
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMsg');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      successMsg.classList.remove('show');
+      errorMsg.style.display = 'none';
+      submitBtn.classList.add('loading');
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' }
+      })
+        .then(res => res.json())
+        .then(data => {
+          submitBtn.classList.remove('loading');
+          submitBtn.disabled = false;
+
+          if (data.success) {
+            successMsg.classList.add('show');
+            form.reset();
+          } else {
+            errorMsg.style.display = 'block';
+            console.error('Web3Forms error:', data);
+          }
+        })
+        .catch(err => {
+          submitBtn.classList.remove('loading');
+          submitBtn.disabled = false;
+          errorMsg.style.display = 'block';
+          console.error('Fetch error:', err);
+        });
+    });
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    setTimeout(() => { document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible')); }, 100);
+  </script>
+</body>
+
+</html>
