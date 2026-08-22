@@ -452,6 +452,7 @@
         </div>
       </div>
 
+
       <!-- ── Web Dev cards ── -->
       <div class="work-card reveal" data-category="webdev" style="display:none;">
         <img src="images/gamifix.png" alt="GamiFix" class="work-img">
@@ -479,7 +480,16 @@
       </div>
 
     </div>
-    
+
+    <div class="yt-cta-row reveal" id="viewAllPostsRow" style="display:none;">
+      <a href="posts.html" target="_blank" class="btn-outline yt-view-all">
+        View All Posts
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+
   </section>
 
   <!-- CLIENTS -->
@@ -794,6 +804,11 @@
         card.style.pointerEvents = '';
         card.style.transition = 'opacity 0.3s, transform 0.3s';
       });
+
+      const viewAllPostsRow = document.getElementById('viewAllPostsRow');
+      if (viewAllPostsRow) {
+        viewAllPostsRow.style.display = filter === 'social' ? '' : 'none';
+      }
     }
 
     tabs.forEach(tab => {
